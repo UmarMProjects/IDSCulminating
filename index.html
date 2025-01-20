@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+     /* https://www.w3schools.com/howto/howto_css_fullscreen_video.asp */
+    .video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      object-fit: cover;
+    }
+/*  https://hype4.academy/tools/glassmorphism-generator*/
+    .nav-button {
+      position: relative;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 160px;
+    }
+
+    .nav-button:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .nav-button:active {
+      transform: translateY(1px);
+    }
+    /* https://codepen.io/vedadesigns/pen/GPxYZg*/
+    .main-title {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #ffffff 0%, #a8a8a8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      letter-spacing: 4px;
+    }
+
+    .subtitle {
+      background: linear-gradient(135deg, #a8a8a8 0%, #ffffff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 2px;
+    }
+  /*  https://uiverse.io/buttons */
+    .button-text {
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 0 1rem;
+      position: fixed;
+      bottom: 15%;
+      left: 0;
+      right: 0;
+    }
+
+    /*  https://hype4.academy/tools/glassmorphism-generator*/
+    @media (max-width: 768px) {
+      .button-container {
+        flex-direction: column;
+        align-items: center;
+        bottom: 10%;
+        gap: 1rem;
+      }
+      
+      .nav-button {
+        width: 200px;
+      }
+
+      .main-title {
+        font-size: 3rem !important;
+      }
+
+      .subtitle {
+        font-size: 1.5rem !important;
+      }
+
+      .center-content {
+        top: 35%;
+      }
+    }
+
+    .icon {
+      transition: transform 0.3s ease;
+    }
+
+    .nav-button:hover .icon {
+      transform: translateY(-2px);
+    }
+
+    .center-content {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <!-- Video Background -->
+  <video autoplay muted loop playsinline class="video-background">
+    <source src="images/background.mp4 " type="video/mp4">
+  </video>
+  
+ 
+  <div class="overlay"></div>
+  <nav class="fixed w-full bg-transparent z-50">
+    <div class="container mx-auto flex items-center justify-between p-6">
+      <div class="text-xl font-bold text-white tracking-wider">UMAR MALIK</div>
+    </div>
+  </nav>
+
+  <main class="min-h-screen">
+    <div class="center-content">
+      <h1 class="main-title text-6xl md:text-7xl font-bold text-center mb-4">
+        PORTFOLIO
+      </h1>
+      <p class="subtitle text-xl md:text-2xl font-medium text-center">
+        SOFTWARE ENGINEER & DEVELOPER
+      </p>
+    </div>
+    
+    <div class="button-container">
+      <a href="about.html" class="nav-button text-white rounded-lg p-4 text-center group">
+        <i class="fas fa-user icon mb-2 text-xl"></i>
+        <div class="button-text">About Me</div>
+      </a>
+      
+      <a href="projects.html" class="nav-button text-white rounded-lg p-4 text-center group">
+        <i class="fas fa-code icon mb-2 text-xl"></i>
+        <div class="button-text">Projects</div>
+      </a>
+      
+      <a href="contact.html" class="nav-button text-white rounded-lg p-4 text-center group">
+        <i class="fas fa-envelope icon mb-2 text-xl"></i>
+        <div class="button-text">Contact</div>
+      </a>
+      
+      <a href="https://github.com/UmarMProjects" class="nav-button text-white rounded-lg p-4 text-center group">
+        <i class="fas fa-ellipsis-h icon mb-2 text-xl"></i>
+        <div class="button-text">Github</div>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

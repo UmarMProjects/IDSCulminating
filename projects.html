@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: white;
+    }
+     /* https://www.w3schools.com/howto/howto_css_fullscreen_video.asp */
+    .video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+    }
+
+    .video-overlay {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+      z-index: -1;
+    }
+/*  https://hype4.academy/tools/glassmorphism-generator*/
+    .glass-effect {
+      background: rgba(23, 23, 23, 0.3);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    /* https://codepen.io/vedadesigns/pen/GPxYZg*/
+    .project-card {
+      background-color: rgba(23, 23, 23, 0.9);
+      border: 1px solid rgba(75, 75, 75, 0.3);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(75, 75, 75, 0.3);
+    }
+
+    .hero-section {
+      padding-top: 120px;
+      padding-bottom: 80px;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+    }
+
+    .section-title {
+      font-size: 3.5rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(45deg, #fff, #888);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+     /*  https://uiverse.io/buttons */
+    .btn-details {
+      background: linear-gradient(45deg, #333, #666);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-details:hover {
+      background: linear-gradient(45deg, #444, #777);
+      transform: translateY(-2px);
+    }
+
+  
+    #mobile-menu {
+      transition: all 0.3s ease-in-out;
+      max-height: 0;
+      overflow: hidden;
+    }
+
+    #mobile-menu.active {
+      max-height: 250px;
+    }
+
+ /* https://getbootstrap.com/docs/4.0/components/navbar/ */
+    .nav-link.active {
+      color: #ffffff;
+      border-bottom: 2px solid #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      .nav-link.active {
+        border-bottom: none;
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Video Background -->
+  <video autoplay muted loop class="video-background">
+    <source src="Images/background.mp4" type="video/mp4">
+  </video>
+  <div class="video-overlay"></div>
+
+  <!-- Updated Navigation -->
+  <nav class="fixed w-full z-50 glass-effect">
+    <div class="container mx-auto flex items-center justify-between p-4">
+      <div class="text-xl font-bold text-gray-100">
+        <a href="index.html" class="flex items-center space-x-2">
+          <span>Engineering Portfolio: Umar Malik</span>
+        </a>
+      </div>
+      <div class="hidden lg:flex space-x-6 ml-auto">
+        <a href="index.html" class="nav-link px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">Home</a>
+        <a href="about.html" class="nav-link px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">About</a>
+        <a href="projects.html" class="nav-link px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">Projects</a>
+        <a href="contact.html" class="nav-link px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">Contact</a>
+      </div>
+      <button class="block lg:hidden p-2 rounded-lg hover:bg-gray-700/50 transition-all" id="hamburger-menu" aria-label="Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="lg:hidden glass-effect" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="index.html" class="nav-link block px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">Home</a>
+        <a href="about.html" class="nav-link block px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">About</a>
+        <a href="projects.html" class="nav-link block px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">Projects</a>
+        <a href="contact.html" class="nav-link block px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="container mx-auto px-6">
+      <h1 class="section-title">Engineering Projects</h1>
+      <p class="text-gray-300 text-xl max-w-2xl mb-8">
+        Exploring innovation through design and technology. Here are some of my key projects that showcase problem-solving and technical expertise.
+      </p>
+    </div>
+  </div>
+
+  <!-- Projects Grid -->
+  <div class="project-grid">
+    <!-- Project Card 1 -->
+    <div class="project-card rounded-lg overflow-hidden">
+      <img src="Images/project1.JPG" alt="Project 1" class="project-image">
+      <div class="p-6">
+        <h3 class="text-xl font-bold mb-2">Popsicle Stick Bridge</h3>
+        <p class="text-gray-400 mb-4">
+          Designed and constructed a truss-style bridge using popsicle sticks, leveraging structural engineering principles to achieve a load capacity of 149 lbs.
+        </p>
+        <button class="btn-details">View Details →</button>
+      </div>
+    </div>
+
+    <!-- Project Card 2 -->
+    <div class="project-card rounded-lg overflow-hidden">
+      <img src="Images/project2.png" alt="Project 2" class="project-image">
+      <div class="p-6">
+        <h3 class="text-xl font-bold mb-2">Robotics Project</h3>
+        <p class="text-gray-400 mb-4">
+          Engineered and programmed a functional robot with mechanical systems and autonomous capabilities for competitive robotics applications.
+        </p>
+        <button class="btn-details">View Details →</button>
+      </div>
+    </div>
+
+    <!-- Project Card 3 -->
+    <div class="project-card rounded-lg overflow-hidden">
+      <img src="Images/Project3.png" alt="Project 3" class="project-image">
+      <div class="p-6">
+        <h3 class="text-xl font-bold mb-2">Platformer Game</h3>
+        <p class="text-gray-400 mb-4">
+          Developed a 2D platformer game with custom-designed physics, level mechanics, and user interaction systems.
+        </p>
+        <button class="btn-details">View Details →</button>
+      </div>
+    </div>
+
+    <!-- Project Card 4 -->
+    <div class="project-card rounded-lg overflow-hidden">
+      <img src="Images/project4.png" alt="Project 4" class="project-image">
+      <div class="p-6">
+        <h3 class="text-xl font-bold mb-2">Rebind</h3>
+        <p class="text-gray-400 mb-4">
+          Built a versatile key-remapping program that integrates user interface design with low-level input handling for enhanced keyboard customization.
+        </p>
+        <button class="btn-details">View Details →</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburgerMenu.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    })
+
+    /* https://getbootstrap.com/docs/4.0/components/navbar/ */
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

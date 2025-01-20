@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+        /* https://www.w3schools.com/howto/howto_css_fullscreen_video.asp */
+    .video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      object-fit: cover;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 1);
+      z-index: -1;
+    }
+
+  /*  https://hype4.academy/tools/glassmorphism-generator*/
+    .glass-effect {
+      background: rgba(23, 23, 23, 0.3);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    /*  https://www.w3schools.com/css/tryit.asp?filename=trycss_form_button*/
+    .main-title {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #ffffff 0%, #a8a8a8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      letter-spacing: 4px;
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 1rem;
+    }
+
+    .form-input {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .form-input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .submit-button {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .submit-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .contact-info {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 1rem;
+    }
+
+   /* https://getbootstrap.com/docs/4.0/components/navbar/ */
+    #mobile-menu {
+      transition: all 0.3s ease-in-out;
+      max-height: 0;
+      overflow: hidden;
+    }
+
+    #mobile-menu.active {
+      max-height: 250px;
+    }
+
+    .nav-link.active {
+      color: #ffffff;
+      border-bottom: 2px solid #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      .nav-link.active {
+        border-bottom: none;
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+  </style>
+</head>
+<body class="text-white">
+  <!-- Video Background -->
+  <video autoplay muted loop playsinline class="video-background">
+    <source src="path/to/your/video.mp4" type="video/mp4">
+  </video>
+  
+  <div class="overlay"></div>
+
+  <!-- Updated Navigation -->
+  <nav class="fixed w-full z-50 glass-effect">
+    <div class="container mx-auto flex items-center justify-between p-4">
+      <div class="text-xl font-bold text-gray-100">
+        <a href="index.html" class="flex items-center space-x-2">
+          <span>Engineering Portfolio: Umar Malik</span>
+        </a>
+      </div>
+      <div class="hidden lg:flex space-x-6 ml-auto">
+        <a href="index.html" class="nav-link px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">Home</a>
+        <a href="about.html" class="nav-link px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">About</a>
+        <a href="projects.html" class="nav-link px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">Projects</a>
+        <a href="contact.html" class="nav-link px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">Contact</a>
+      </div>
+      <button class="block lg:hidden p-2 rounded-lg hover:bg-gray-700/50 transition-all" id="hamburger-menu" aria-label="Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="lg:hidden glass-effect" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="index.html" class="nav-link block px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">Home</a>
+        <a href="about.html" class="nav-link block px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">About</a>
+        <a href="projects.html" class="nav-link block px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">Projects</a>
+        <a href="contact.html" class="nav-link block px-3 py-2 rounded-lg hover:bg-gray-700/50 transition-all">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="min-h-screen pt-32 px-4 container mx-auto">
+    <h1 class="main-title text-5xl md:text-6xl font-bold text-center mb-12">
+      GET IN TOUCH
+    </h1>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+      <!-- Contact Form -->
+      <div class="form-container p-8">
+        <form class="space-y-6">
+          <div>
+            <input type="text" placeholder="Name" 
+                   class="form-input w-full p-3 rounded-lg focus:outline-none">
+          </div>
+          <div>
+            <input type="email" placeholder="Email" 
+                   class="form-input w-full p-3 rounded-lg focus:outline-none">
+          </div>
+          <div>
+            <input type="text" placeholder="Subject" 
+                   class="form-input w-full p-3 rounded-lg focus:outline-none">
+          </div>
+          <div>
+            <textarea placeholder="Message" rows="4" 
+                      class="form-input w-full p-3 rounded-lg focus:outline-none"></textarea>
+          </div>
+          <button type="submit" 
+                  class="submit-button w-full py-3 px-6 rounded-lg text-white font-semibold">
+            Send Message
+          </button>
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="contact-info p-8 space-y-8">
+        <div>
+          <h2 class="text-2xl font-semibold mb-4">Let's Connect</h2>
+          <p class="text-gray-300">
+            Feel free to reach out. I'm always open to discussing new projects, 
+            creative ideas, or opportunities to be part of your visions.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex items-center space-x-4">
+            <i class="fas fa-envelope text-xl"></i>
+            <span>umarmalik531@gmail.com</span>
+          </div>
+          <div class="flex items-center space-x-4">
+            <i class="fas fa-map-marker-alt text-xl"></i>
+            <span>Toronto</span>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Social Media</h3>
+          <div class="flex space-x-6">
+            <a href="" class="text-2xl hover:text-gray-300 transition-colors">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/UmarMProjects" class="text-2xl hover:text-gray-300 transition-colors">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="" class="text-2xl hover:text-gray-300 transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Enhanced mobile menu functionality
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburgerMenu.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+
+   
+
+   /* https://getbootstrap.com/docs/4.0/components/navbar/ */
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
